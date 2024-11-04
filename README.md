@@ -55,7 +55,7 @@ spring.flyway.ignore-migration-patterns=*:Ignored
 - `spring.flyway.baseline-version` : 베이스라인 버전을 설정한다.
 - `spring.flyway.ignore-migration-patterns` : 마이그레이션 파일을 무시할 패턴을 설정한다. ([Ignore Migration Patterns](https://documentation.red-gate.com/flyway/flyway-cli-and-api/configuration/parameters/flyway/ignore-migration-patterns))
 
-`[Baseline 에 대한 간단한 정리 - 동작 방식]`
+### Baseline 에 대한 간단한 정리 - 동작 방식
 
 이 옵션을 활성화하면 기존에 데이터가 있거나, flyway 관리 이전에 수동으로 생성된 데이터베이스에 대해서도 마이그레이션을 쉽게 적용할 수 있다. 
 
@@ -73,9 +73,8 @@ spring.flyway.ignore-migration-patterns=*:Ignored
 - version : 마이그레이션 파일의 버전을 나타낸다. 버전은 숫자로 표현되며, 마이그레이션 파일은 버전 순으로 실행된다.
 - description : 마이그레이션 파일의 설명을 나타낸다.
 
-> 
-
 **[V0.0.1__initialize_member_table.sql]**
+
 ```sql
 CREATE TABLE member
 (
@@ -86,8 +85,9 @@ CREATE TABLE member
 ```
 
 **[V0.0.2__initialize_member_data.sql]**
+
 ```sql
-create table notification (
+CREATE TABLE notification (
     notification_id bigint  NOT NULL AUTO_INCREMENT COMMENT '알림 결과를 식별하기 위한 식별자로 고유 번호를 갖는다.',
     member_id integer not null,
     message text not null,
