@@ -107,7 +107,7 @@ INSERT INTO member (member_name) VALUES ('member1');
 
 실행결과는 별도로 캡처하지 않았다. 
 
-## FlywayMigrationStrategy 
+## 4. FlywayMigrationStrategy 
 
 `FlywayMigrationStrategy` 는 `Flyway` 빈을 사용하여 마이그레이션을 수행하는 전략을 정의한다.
 
@@ -134,3 +134,30 @@ public class FlywayMigrationStrategyConfiguration {
 - V0.3.3 버전의 마이그레이션 파일이 실패 
 - `flyway_schema_history` 테이블에 V0.3.3 버전의 마이그레이션 정보가 실패로 표시되어 있다. 
 - 이때 `repair()` 를 호출하면 `flyway_schema_history` 실패한 마이그레이션 파일을 다시 실행하고 처리 결과를 `flyway_schema_history` 에 반영한다.
+
+## 5. Tip
+
+### IntelliJ 를 이용한 DDL 추출
+
+JPA를 이용해 개발할 때 Entity 를 생성한 후 `ddl-auto` 를 이용해서 Database 생성해 출력된 SQL(DDL) 을 가져와 마이그레이션을 할 수 있다. 하지만 이 방법은 프로세스를 한 번 실행해야 한다는 점에서 번거로움이 있다. 이를 보완하기위해 IDE(나는 IntelliJ) 를 이용해서 추출해보자.
+
+1. `application.properties` 에서 `ddl-auto` 를 `validate` 또는 `none` 으로 설정한다.
+
+```properties
+spring.jpa.hibernate.ddl-auto=validate
+```
+
+2. IntelliJ 의 Persistence 도구를 활성화한다.
+
+- 상단 메뉴바 > View > Tool Windows > Persistence 활성솨
+
+3. Persistence 도구를 이용해서 DDL 을 추출한다.
+
+- entityManagerFactory 선택 후 우클릭 > New > Flyway Migration
+![img.png](images/persistence-flyway-migration.png)
+
+- 마이그레이션 타겟 설정 
+![img.png](images/flyway-migration.png)
+
+- 마이그레이션 파일 생성 - 파일 이름을 입력하고 마이그레이션 파일을 생성한다.
+![img.png](images/migration-file(sql).png)
