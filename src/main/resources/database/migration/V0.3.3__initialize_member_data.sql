@@ -1,0 +1,1 @@
+INSERT INTO member (member_name) VALUES ('member1');

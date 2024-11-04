@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  flyway-database:
+    env_file:
+      - .env
+    image: mariadb:11.2
+    container_name: flyway-database
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: flyway
+      MYSQL_USER: flyway
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+
+    ports:
+      - "3307:3306"
